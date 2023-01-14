@@ -20,14 +20,10 @@
 | NUM      | int        | 100   | Вводимые числа                                    |
 
 - Опишем алгоритмы 
-
-1. Добавление числа 
- 
- ![](https://github.com/OneBumBot/Lab5/blob/main/Добавление%20числа.png)
   
-  2. Сортировка
+  1. Сортировка
   
-  ![](https://github.com/OneBumBot/Lab5/blob/main/Пузырек.png)
+  ![](https://github.com/OneBumBot/Lab5/blob/main/Сортировка.png)
 
 ## Вывод
 Разработали и реализовали алгоритм внешней сортировки.

@@ -1,0 +1,32 @@
+
+body
+{
+    background-color:#d0e4fe;
+    align-items: center;
+}
+h1
+{
+    color:orange;
+    text-align:center;
+}
+p
+{
+    font-size:20px;
+    align-content: center;
+}
+input{
+    font-size: large;
+}
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}

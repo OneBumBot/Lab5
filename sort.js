@@ -1,58 +1,38 @@
-function getData() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+const tbody = document.querySelector("tbody");
+const getter = document.getElementById('sort');
 
-            let a = this.responseText.replaceAll('[','').replaceAll(']','').replaceAll('"','').split(',');
-            let intArray = a.map(Number);
-            document.body.innerHTML = `
-                <input name="num" id = "num"/> <button onclick="add_el()">add</button>
-                <p>Доступный Лист ${a}.</p>
-              `;
-            window.globalVariable = intArray;
-        }
-    };
-    xhttp.open("GET", "data.php", true);
-    xhttp.send();
-}
 
-function add_el(globalVariable1 = globalVariable) {
-    var x = document.getElementById('num').value;
-    
-    let inputElement = document.getElementById('num');
-    let inputValue = inputElement.value;
-    let inputValueInt = parseInt(inputValue);
 
-    let intArray = globalVariable;
+const fetchAllUsers = async () => {
+  const data = await fetch("data.php?read=1", {
+    method: "GET",
+  });
+  const response = await data.text();
+  tbody.innerHTML = response;
+};
 
-    if (Number.isInteger(inputValueInt)) {
-        console.log('Значение является целым числом');
+fetchAllUsers();
 
-        intArray.push(inputValueInt);
-        selectionSort(intArray);
-        globalVariable = intArray;
-
-        document.body.innerHTML = `
-		<input name="num" id = "num"/> <button onclick="add_el()">add</button>
-                <p>Доступный Лист ${intArray}.</p>
-              `;
-
+const sort = async(id, id2) => {
+    let data = await fetch('get.php?id=${id1}', { method: "GET",});
+    let response = await data.json();
+    num1 = parseInt(response.NUM);
+    data = await fetch('get.php?id=${id2}', { method: "GET",});
+    response = await data.json();
+    num2 = parseInt(response.NUM);
+    if(num1 > num2 && id < id2) {
+        data = await fetch("set.php?id=${id}&v=${num2}", {method :"GET",});
+        data = await fetch("set.php?id=${id2}&v=${num1}", {method :"GET",});
+    }
+    else if(num2 > num1 && id2 < id){
+        data = await fetch("set.php?id=${id2}&v=${num1}", {method :"GET",});
+        data = await fetch("set.php?id=${id}&v=${num2}", {method :"GET",});
     }
 }
+getter.addEventListener("click", async() => {
+    const id1 = parseInt(document.getElementById('num').value) - 1;
+    const id2 = parseInt(document.getElementById('num2').value) - 1;
+    sort(id1, id2);
+    //fetchAllUsers();
+})
 
-function selectionSort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let min = i;
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[min] > arr[j]) {
-                min = j;
-            }
-        }
-        if (min !== i) {
-            let temp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = temp;
-        }
-    }
-    return arr;
-}

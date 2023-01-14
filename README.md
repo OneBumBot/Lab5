@@ -10,7 +10,7 @@
 
 - Опишем хореографию
 
-![](https://github.com/OneBumBot/Lab5/blob/main/Хореография.png)
+![](https://github.com/OneBumBot/Lab5/blob/main/Польз_сц.png)
 
 - Опишем структуру базы данных
 
